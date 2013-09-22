@@ -11,4 +11,5 @@ of the IC and the number (single digit) that you want to display.
 Exemple:
 
 int nixie0[4] = {50, 51, 52, 53};  // Arduino Mega pins for ABCD.
+
 nixiePrint(nixie0, 5);   // Display the number 5.
