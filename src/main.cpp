@@ -1,4 +1,5 @@
 #include <Arduino.h>
+#include "funcoes.h"
 
 
 // Definição dos pinos para 4 displays.
@@ -9,10 +10,6 @@ int nixie3[4] = {38, 39, 40, 41};
 // LED do Arduino.
 const int ledPin =  13; 
 
-int  pinoA;
-int  pinoB;
-int  pinoC;
-int  pinoD;
 const int  tempo = 100;
 
 // Variables will change:
@@ -23,9 +20,13 @@ long previousMillis = 0;        // will store last time LED was updated
 // will quickly become a bigger number than can be stored in an int.
 long interval = 1000;           // interval at which to blink (milliseconds)
 
-
 void setup() {
   pinMode(ledPin, OUTPUT);
+  configurarPinos(nixie0);
+  configurarPinos(nixie1);
+  configurarPinos(nixie2);
+  configurarPinos(nixie3);
+
   nixiePrint(nixie0, 0);
   nixiePrint(nixie1, 0);
   nixiePrint(nixie2, 0);
@@ -51,79 +52,4 @@ void loop() {
     }
   }
   
-}
-
-void nixiePrint(int pinos[4], int numero){
-  pinoA = pinos[0];
-  pinoB = pinos[1];
-  pinoC = pinos[2];
-  pinoD = pinos[3];
-  //Setup, mover para cima depois.
-  pinMode(pinoA, OUTPUT);
-  pinMode(pinoB, OUTPUT);
-  pinMode(pinoC, OUTPUT);
-  pinMode(pinoD, OUTPUT);    
-  
-  switch (numero){
-    case 0:
-     digitalWrite(pinoD, LOW);    
-     digitalWrite(pinoC, LOW);
-     digitalWrite(pinoB, LOW);
-     digitalWrite(pinoA, LOW);
-    break;
-    case 1:
-     digitalWrite(pinoD, LOW);    
-     digitalWrite(pinoC, LOW);
-     digitalWrite(pinoB, LOW);
-     digitalWrite(pinoA, HIGH);
-    break;
-    case 2:
-     digitalWrite(pinoD, LOW);    
-     digitalWrite(pinoC, LOW);
-     digitalWrite(pinoB, HIGH);
-     digitalWrite(pinoA, LOW);
-    break;
-    case 3:
-     digitalWrite(pinoD, LOW);    
-     digitalWrite(pinoC, LOW);
-     digitalWrite(pinoB, HIGH);
-     digitalWrite(pinoA, HIGH);
-    break;
-    case 4:
-     digitalWrite(pinoD, LOW);    
-     digitalWrite(pinoC, HIGH);
-     digitalWrite(pinoB, LOW);
-     digitalWrite(pinoA, LOW);
-    break;
-    case 5:
-     digitalWrite(pinoD, LOW);    
-     digitalWrite(pinoC, HIGH);
-     digitalWrite(pinoB, LOW);
-     digitalWrite(pinoA, HIGH);
-    break;
-    case 6:
-     digitalWrite(pinoD, LOW);    
-     digitalWrite(pinoC, HIGH);
-     digitalWrite(pinoB, HIGH);
-     digitalWrite(pinoA, LOW);
-    break;
-    case 7:
-     digitalWrite(pinoD, LOW);    
-     digitalWrite(pinoC, HIGH);
-     digitalWrite(pinoB, HIGH);
-     digitalWrite(pinoA, HIGH);
-    break;
-    case 8:
-     digitalWrite(pinoD, HIGH);    
-     digitalWrite(pinoC, LOW);
-     digitalWrite(pinoB, LOW);
-     digitalWrite(pinoA, LOW);
-    break;
-    case 9:
-     digitalWrite(pinoD, HIGH);    
-     digitalWrite(pinoC, LOW);
-     digitalWrite(pinoB, LOW);
-     digitalWrite(pinoA, HIGH);
-    break;
-  }
 }
